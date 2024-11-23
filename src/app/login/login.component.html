@@ -1,0 +1,91 @@
+<p class="text-center">login works!</p>
+
+
+<form [formGroup]="LoginForm" (ngSubmit)="submitLoginForm(LoginForm)" class="w-full flex justify-center flex-col" >
+
+    <!-- <table class="table">
+        <tr *ngFor="let item of formItems" class="py-4" [style]=item.style>
+            <td  >
+                <label [for]=item.name class=" mx-0 inline">{{item.label}}</label>
+            </td>
+            <td >
+                <input [type]=item.type [formControlName]=item.name [id]=item.name [style]=item.inputStyle/>
+            </td>
+        </tr>
+        
+    </table>
+    <button type="submit" pButton pRipple icon="pi pi-user" class="p-2" style="margin: 0 auto; background-color: aqua;">regester</button> -->
+    <div *ngIf="error" class="bg-red-600 w-full h-8 text-gray-100">{{error}}</div>
+
+
+    <div class=" p-4 shadow-2 w-full lg:w-6  flex align-middle">
+        <label for="email" class="text-nowrap mr-3">Email: </label>
+        <input type="text" formControlName="email" id="email"  style="color:black ; outline:none"/>
+    </div>
+
+    <div *ngIf="LoginForm.get('email')?.errors && LoginForm.get('email')?.touched" class="bg-amber-400 w-full p-2">
+        <p *ngIf="LoginForm.get('email')?.getError('required')">email is required</p>
+        <p *ngIf="LoginForm.get('email')?.getError('email')">email is not valid</p>
+    </div>
+
+    <div class=" p-4 shadow-2 w-full lg:w-6  flex align-middle">
+        <label for="password" class="text-nowrap mr-3">Password: </label>
+        <input type="text" formControlName="password" id="password"  style="color:black ; outline:none"/>
+    </div>
+
+    <div *ngIf="LoginForm.get('password')?.errors && LoginForm.get('password')?.touched" class="bg-amber-400 w-full p-2">
+        <p *ngIf="LoginForm.get('password')?.getError('required')">password is required</p>
+        <p *ngIf="LoginForm.get('password')?.getError('minlength')">passwords minlength is 7</p>
+        <p *ngIf="LoginForm.get('password')?.getError('maxlength')">passwords maxlength is 19</p>
+        <p *ngIf="LoginForm.get('password')?.getError('pattern')">passwords right pattern is start with upper case like A</p>
+    </div>
+    
+    
+    <!-- <div class=" p-4 shadow-2 w-full lg:w-6  flex align-middle">
+        <label for="idd" class="text-nowrap mr-3">id: </label>
+        <input type="text" formControlName="idd" id="idd"  style="color:black ; outline:none"/>
+    </div> -->
+    <button [disabled]="!LoginForm.valid" type="submit" pButton pRipple  class="p-2" style="margin: 0 auto; background-color: aqua;">
+        <span *ngIf="!isloading"><span class="pi pi-user"></span> Login</span>
+        <i *ngIf="isloading" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+        <!-- <i class="pi pi-spin pi-cog" style="font-size: 2rem"></i>     -->
+    </button>
+
+
+
+
+
+    <!-- <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+        <div class="text-center mb-5">
+            <img src="assets/images/blocks/logos/hyper.svg" alt="Image" height="50" class="mb-3">
+            <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
+            <span class="text-600 font-medium line-height-3">Don't have an account?</span>
+            <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Create today!</a>
+        </div>
+    
+        <div>
+            <label for="email1" class="block text-900 font-medium mb-2">Frist name</label>
+            <input id="email1" type="text" placeholder="Email address" pInputText class="w-full mb-3">
+    
+            <label for="password1" class="block text-900 font-medium mb-2">Last name</label>
+            <input id="password1" type="password" placeholder="Password" pInputText class="w-full mb-3">
+
+            <label for="email1" class="block text-900 font-medium mb-2">Email</label>
+            <input id="email1" type="text" placeholder="Email address" pInputText class="w-full mb-3">
+    
+            <label for="password1" class="block text-900 font-medium mb-2">Password</label>
+            <input id="password1" type="password" placeholder="Password" pInputText class="w-full mb-3">
+    
+            <div class="flex align-items-center justify-content-between mb-6">
+                <div class="flex align-items-center">
+                    <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
+                    <label for="rememberme1" class="text-900">Remember me</label>
+                </div>
+                <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</a>
+            </div>
+    
+            <button pButton pRipple type="button"  icon="pi pi-user" class="w-full">Sign In</button>
+        </div>
+    </div> -->
+
+</form>

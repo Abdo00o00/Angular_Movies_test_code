@@ -1,0 +1,67 @@
+<p-menubar [model]="items" [style]="{'background-color':'var(--main-bg)' , 'color':'white' , 'margin':' auto 1rem'}">
+    <!-- <a 
+    class="flex align-middle" 
+    style="color:red; font-weight:bold; font-size:30px; margin: auto 0px; cursor: pointer">
+    <span routerLink="home">Noxe</span>
+</a> -->
+
+
+<ng-template pTemplate="item" let-item let-root="root" >
+
+        <a pRipple 
+        *ngIf="item.bool"
+        class="flex align-middle"
+        [style]="item.style"
+        [routerLink]="item.routerLink" >
+        
+        <span >{{ item.label }}</span>
+    </a>
+    </ng-template>
+
+    <div class="flex align-middle gap-4" style="width: 500px;">
+        <ul class="flex align-middle gap-2 " style="margin: auto 0px auto auto;">
+            <li *ngFor="let oneicon of iconsList">
+                <a [href]="oneicon.href">
+                    <i class=" pi pi-{{ oneicon.label }} " [style]="oneicon.style"></i>
+                    
+                </a>
+            </li>
+        </ul>
+        <!-- <ul class="flex align-middle " >
+            <li *ngFor="let authentication of authentications" style="padding: 10px 0; margin: 0 12px;" *ngIf="!this.prilog">
+                <span  [routerLink]="authentication.routerLink" [style]="authentication.style">{{ authentication.label }}</span>
+            </li>
+        </ul> -->
+        <ul class="flex align-middle " >
+            <li style="padding: 10px 0; margin: 0 12px;" *ngIf="!this.islogin">
+                <span  routerLink="login" style="color:var(--main-bg); font-size:18px ; font-weight:600 ; cursor:pointer">Login</span>
+            </li>
+
+            <li style="padding: 10px 0; margin: 0 12px;" *ngIf="this.islogin">
+                <span (click)="logout()"  style="color:var(--main-bg); font-size:18px ; font-weight:600 ; cursor:pointer">logout</span>
+            </li>           
+        
+
+            <li class="nav-item dropdown my-auto">
+                <a class="nav-link dropdown-toggle" routerLink="/settings" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Settings
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" routerLink="/settings/password">password</a></li>
+                  <li><a class="dropdown-item" routerLink="/settings/privacy">privacy</a></li>
+                  <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                </ul>
+              </li>
+            
+
+            
+            <li style="padding: 10px 0; margin: 0 12px;" *ngIf="!this.islogin">
+                <span  routerLink="regester" style="color:var(--main-bg); font-size:18px ; font-weight:600 ; cursor:pointer">Regester</span>
+            </li>
+        </ul>
+        
+
+
+
+    </div>
+</p-menubar>

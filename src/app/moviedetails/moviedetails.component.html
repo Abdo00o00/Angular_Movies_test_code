@@ -1,0 +1,56 @@
+<div class="">
+    <div class="flex flex-col">
+        <figure class="w-100 flex mx-auto flex-col justify-center">
+            <div class=" w-full" >
+                <div class="w-full mx-auto flex flex-row ">
+
+                    <img style="height: 500px;" *ngIf="itemDetails.poster_path" class=" h-full " [src]="'http://image.tmdb.org/t/p/w500/'+itemDetails.poster_path" alt="..."/>
+                    <img style="height: 500px;" *ngIf="itemDetails.profile_path" class=" h-full " [src]="'http://image.tmdb.org/t/p/w500/'+itemDetails.profile_path" alt="..."/>
+                    <div class="p-4 w-4/12 flex flex-col">
+                        <span *ngIf="itemDetails.overview" class=" text-amber-200 opacity-80">{{itemDetails.overview | seeMore:16}}</span>
+                        <span *ngIf="itemDetails.vote_count" class="mt-5 text-xl text-orange-600">Vote count: {{itemDetails.vote_count}}</span>
+                        <span *ngIf="itemDetails.vote_average" class="mt-5 text-xl text-orange-600">Vote average: {{itemDetails.vote_average.toFixed(1)}}</span>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <figcaption>
+                <h3 class="text-start ml-6 mt-6 text-3xl">{{itemDetails.title}}</h3>
+                <h3 class="text-center  mt-6 text-3xl">{{itemDetails.name}}</h3>
+                <!-- <span *ngIf="itemDetails.vote_average" class="p-1 absolute top-0 right-0 z-10 bg-emerald-500">{{itemDetails.vote_average.toFixed(1)}}</span> -->
+            </figcaption>
+        
+        </figure>
+
+        <div class="flex flex-wrap">
+            <div class="w-1/3 p-4 align-middle">
+                <div class="brdr w-1/4"></div>
+                <div class="py-4">
+                    <h2 class="text-5xl my-4">similar <br>Movies <br>to Watch Now</h2>
+                    <p class="text-xl text-gray-500 pt-3">The most similar movies</p>
+                </div>
+                <div class="brdr w-full"></div>
+            </div>    
+            <div class="singleMovie p-1 relative w-1/6" *ngFor="let movie of simlarMovies">                                
+                <div class="movie w-11/12 mx-auto">
+                    <a (click)="getOneOfSimilarMovies(movie.id,mediaType)" [routerLink]="['/moviedetails' , movie.id , mediaType]" >
+                
+                        <figure class="w-100">
+                            <img *ngIf="movie.poster_path" class="w-full" [src]="'http://image.tmdb.org/t/p/w500/'+movie.poster_path" alt="..."/>
+                            <img *ngIf="movie.profile_path" class="w-full" [src]="'http://image.tmdb.org/t/p/w500/'+movie.profile_path" alt="..."/>
+                            
+                            <figcaption>
+                                <h3>{{movie.title}}{{movie.name}}</h3>
+                                <span *ngIf="movie.vote_average" class="p-1 absolute top-0 right-0 z-10 bg-emerald-500">{{movie.vote_average.toFixed(1)}}</span>
+                            </figcaption>
+                        
+                        </figure>
+                    </a>
+                    
+                </div>
+                <!-- <app-media-item  [movie]="movie"></app-media-item> -->
+            </div>
+        </div>
+    </div>
+</div>

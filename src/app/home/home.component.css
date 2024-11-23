@@ -1,0 +1,11 @@
+.brdr{
+    border: 1px solid rgba(133, 133, 133, 0.322);
+    height: 0.51px;
+}
+
+input::placeholder {
+    font-size: 19px;
+    font-weight: 500;
+    color: #ff4141; /* يمكنك تغيير اللون إلى ما يناسبك */
+    opacity: 1; /* للتحكم في الشفافية، القيمة بين 0 و 1 */
+}

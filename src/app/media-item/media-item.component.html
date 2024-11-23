@@ -1,0 +1,24 @@
+<div class="movie w-11/12 mx-auto">
+    <a [routerLink]="['/moviedetails' , movie.id , movie.media_type]" >
+
+        <figure class="w-100">
+            <img *ngIf="movie.poster_path" class="w-full" [src]="'http://image.tmdb.org/t/p/w500/'+movie.poster_path" alt="..."/>
+            <img *ngIf="movie.profile_path" class="w-full" [src]="'http://image.tmdb.org/t/p/w500/'+movie.profile_path" alt="..."/>
+            
+            <figcaption>
+                <h3 *ngIf="false">{{movie | json}}</h3>
+                <h3>{{movie.title | uppercase | titlecase | lowercase |watch}}{{movie.name}}</h3>
+                <span *ngIf="movie.vote_average" 
+                class="p-1 absolute top-0 right-0 z-10 bg-emerald-500"
+                >{{movie.vote_average.toFixed(1)}}</span>
+                <span *ngIf="movie.vote_average" 
+                class="p-1 absolute top-0 right-0 z-10 bg-emerald-500 mt-9"
+                >{{movie.vote_average.toFixed(1) | moviePrice | currency:'USD'}}</span>
+                    
+                
+            </figcaption>
+        
+        </figure>
+    </a>
+    
+</div>
